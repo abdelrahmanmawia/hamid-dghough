@@ -170,12 +170,12 @@ export default function Portfolio() {
           </h2>
 
           <div className="flex flex-col md:flex-row items-start gap-6">
-            <div className="flex-shrink-0 flex gap-4">
+            <div className="flex-shrink-0 flex flex-col md:flex-row gap-4 items-center">
               {book.cover && (
                 <img
                   src={book.cover}
                   alt={`${book.title} - غلاف`}
-                  className="w-56 h-80 object-cover rounded-md shadow-sm cursor-pointer"
+                  className="w-full max-w-[220px] md:w-56 md:h-80 h-auto object-cover rounded-md shadow-sm cursor-pointer"
                   onClick={() => setLightboxSrc(book.cover)}
                 />
               )}
@@ -184,7 +184,7 @@ export default function Portfolio() {
                 <img
                   src={book.back}
                   alt={`${book.title} - غلاف خلفي`}
-                  className="w-56 h-80 object-cover rounded-md shadow-sm cursor-pointer"
+                  className="w-full max-w-[220px] md:w-56 md:h-80 h-auto object-cover rounded-md shadow-sm cursor-pointer"
                   onClick={() => setLightboxSrc(book.back)}
                 />
               )}
@@ -283,7 +283,7 @@ export default function Portfolio() {
                         <img
                           src={pub.cover}
                           alt={`${pub.title} - غلاف`}
-                          className="w-28 h-40 object-cover rounded-md shadow-sm cursor-pointer"
+                          className="w-full max-w-[140px] md:w-28 md:h-40 h-auto object-cover rounded-md shadow-sm cursor-pointer"
                           onClick={() => setLightboxSrc(pub.cover)}
                         />
                       </div>
@@ -576,6 +576,7 @@ export default function Portfolio() {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-gray-300">© 2025 الأستاذ حميد دغوج - جميع الحقوق محفوظة</p>
           <p className="text-gray-400 text-sm mt-2">معهد الدراسات والأبحاث للتعريب - جامعة محمد الخامس</p>
+      
         </div>
       </footer>
 
