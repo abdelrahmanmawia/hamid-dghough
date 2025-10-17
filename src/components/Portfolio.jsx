@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, User, FileText, Mail, Phone, MapPin, Download, ExternalLink } from 'lucide-react';
+import { BookOpen, User, FileText, Mail, Phone, MapPin, Download, ExternalLink, Menu, X } from 'lucide-react';
 import profileImage from '../assets/profile.jpg'; // Assuming the image is saved in assets folder
 import bookCover from '../assets/book_cover_2025.jpg';
 import bookBack from '../assets/book_back_2025.jpg';
@@ -8,6 +8,7 @@ import bookBack from '../assets/book_back_2025.jpg';
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
   const [lightboxSrc, setLightboxSrc] = useState(null); // <-- new state for lightbox
+  const [mobileOpen, setMobileOpen] = useState(false); // <-- new state for mobile menu
 
   const publications = [
     {
@@ -432,24 +433,46 @@ export default function Portfolio() {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4">
-              <img 
-                src={profileImage} 
+              <img
+                src={profileImage}
                 alt="صورة الأستاذ"
                 className="w-12 h-12 rounded-full object-cover border-2 border-emerald-500"
               />
               <div className="text-2xl font-bold text-emerald-700">د. حميد دغوج</div>
             </div>
-            <div className="flex gap-2 flex-wrap">
+
+            {/* Desktop menu */}
+            <div className="hidden md:flex gap-2">
               {[
-                { id: 'home', label: 'الرئيسية', icon: <User className="w-4 h-4" /> },
-                { id: 'about', label: 'نبذة', icon: <BookOpen className="w-4 h-4" /> },
-                { id: 'book', label: 'الكتاب', icon: <BookOpen className="w-4 h-4" /> }, // new book section
-                { id: 'publications', label: 'المنشورات', icon: <FileText className="w-4 h-4" /> },
-                { id: 'contact', label: 'الاتصال', icon: <Mail className="w-4 h-4" /> }
-              ].map(item => (
+                  {
+                    id: 'home',
+                    label: 'الرئيسية',
+                    icon: <User className="w-4 h-4" />
+                  },
+                  {
+                    id: 'about',
+                    label: 'نبذة',
+                    icon: <BookOpen className="w-4 h-4" />
+                  },
+                  {
+                    id: 'book',
+                    label: 'الكتب',
+                    icon: <BookOpen className="w-4 h-4" />
+                  },
+                  {
+                    id: 'publications',
+                    label: 'المنشورات',
+                    icon: <FileText className="w-4 h-4" />
+                  },
+                  {
+                    id: 'contact',
+                    label: 'الاتصال',
+                    icon: <Mail className="w-4 h-4" />
+                  }
+                ].map(item => (
                 <button
                   key={item.id}
-                  onClick={() => setActiveSection(item.id)}
+                  onClick={() => { setActiveSection(item.id); }}
                   className={`px-4 py-2 rounded-lg font-semibold transition-all flex items-center gap-2 ${
                     activeSection === item.id
                       ? 'bg-emerald-600 text-white shadow-md'
@@ -461,7 +484,64 @@ export default function Portfolio() {
                 </button>
               ))}
             </div>
+
+            {/* Mobile hamburger */}
+            <div className="md:hidden">
+              <button
+                type="button"
+                aria-label="فتح القائمة"
+                onClick={() => setMobileOpen(prev => !prev)}
+                className="p-2 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200"
+              >
+                {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
           </div>
+
+          {/* Mobile dropdown menu */}
+          {mobileOpen && (
+            <div className="mt-3 md:hidden bg-white border-t pt-3 pb-4">
+              <div className="flex flex-col gap-2 px-2">
+                {[
+                  {
+                    id: 'home',
+                    label: 'الرئيسية',
+                    icon: <User className="w-4 h-4" />
+                  },
+                  {
+                    id: 'about',
+                    label: 'نبذة',
+                    icon: <BookOpen className="w-4 h-4" />
+                  },
+                  {
+                    id: 'book',
+                    label: 'الكتب',
+                    icon: <BookOpen className="w-4 h-4" />
+                  },
+                  {
+                    id: 'publications',
+                    label: 'المنشورات',
+                    icon: <FileText className="w-4 h-4" />
+                  },
+                  {
+                    id: 'contact',
+                    label: 'الاتصال',
+                    icon: <Mail className="w-4 h-4" />
+                  }
+                ].map(item => (
+                  <button
+                    key={item.id}
+                    onClick={() => { setActiveSection(item.id); setMobileOpen(false); }}
+                    className={`w-full text-right px-3 py-2 rounded-lg flex items-center justify-between gap-2 font-semibold transition-all ${
+                      activeSection === item.id ? 'bg-emerald-600 text-white' : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">{item.icon}<span>{item.label}</span></span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
