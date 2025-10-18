@@ -9,6 +9,7 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
   const [lightboxSrc, setLightboxSrc] = useState(null); // <-- new state for lightbox
   const [mobileOpen, setMobileOpen] = useState(false); // <-- new state for mobile menu
+  const [pdfSrc, setPdfSrc] = useState(null); // Add a new state for PDF viewer
 
   const publications = [
     {
@@ -209,15 +210,13 @@ export default function Portfolio() {
 
               <div className="flex items-center gap-3 mt-4">
                 {book.pdf && (
-                  <a
-                    href={book.pdf}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={() => setPdfSrc(book.pdf)}
                     className="flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors"
                   >
-                    <Download className="w-4 h-4" />
-                    تحميل PDF
-                  </a>
+                    <FileText className="w-4 h-4" />
+                    عرض المستند
+                  </button>
                 )}
               </div>
             </div>
@@ -319,15 +318,13 @@ export default function Portfolio() {
 
                   <div className="flex flex-col items-end gap-3">
                     {pub.pdf && (
-                      <a
-                        href={pub.pdf}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <button
+                        onClick={() => setPdfSrc(pub.pdf)}
                         className="flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors"
                       >
-                        <Download className="w-4 h-4" />
-                        PDF تحميل
-                      </a>
+                        <FileText className="w-4 h-4" />
+                        عرض المستند
+                      </button>
                     )}
                   </div>
                 </div>
@@ -622,6 +619,33 @@ export default function Portfolio() {
               alt="عرض مكبر"
               className="w-full h-auto max-h-[95vh] object-contain rounded-md shadow-2xl"
               onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* PDF viewer modal - Add this new modal for PDF viewing */}
+      {pdfSrc && (
+        <div 
+          className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+          onClick={() => setPdfSrc(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="w-full max-w-5xl h-[90vh] bg-white rounded-lg overflow-hidden" onClick={e => e.stopPropagation()}>
+            <div className="flex justify-between items-center p-4 border-b">
+              <h3 className="font-bold text-lg">عرض المستند</h3>
+              <button 
+                onClick={() => setPdfSrc(null)}
+                className="p-2 hover:bg-gray-100 rounded-full"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <iframe
+              src={`${pdfSrc}#toolbar=0`}
+              className="w-full h-[calc(90vh-4rem)]"
+              title="PDF Viewer"
             />
           </div>
         </div>
