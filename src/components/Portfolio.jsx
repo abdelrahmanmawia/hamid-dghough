@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, User, FileText, Mail, Phone, MapPin, Download, ExternalLink, Menu, X } from 'lucide-react';
+import { BookOpen, User, FileText, Mail, Phone, MapPin, Download, ExternalLink, Menu, X, Facebook } from 'lucide-react';
 import profileImage from '../assets/profile.jpg'; // Assuming the image is saved in assets folder
 import bookCover from '../assets/book_cover_2025.jpg';
 import bookBack from '../assets/book_back_2025.jpg';
@@ -89,7 +89,12 @@ export default function Portfolio() {
       pages: '', // املأ إذا أحببت
       cover: bookCover,
       back: bookBack,
-      featured: true, // <-- added flag to keep this book separate
+      featured: true,
+      description: `الكتاب يبحث في ماهية الحدث اللغوي من خلال ثلاثة مفاهيم رئيسية: الدال (الصوت)، المدلول (المعنى)، والمرجع (الشيء في العالم).
+يتناول تطور البحث في العلاقة بين هذه المفاهيم داخل اللسانيات الحديثة، وكيف تحولت من دراسة الصوت والمعنى إلى دراسة العلاقة بين اللغة والفكر والعالم الخارجي.
+
+كما يناقش كيف يبني الإنسان تصورات ذهنية للأشياء، وكيف تنتقل هذه التصورات عبر اللغة، وكيف تمثل اللغة العالم داخل الذهن البشري.
+الكتاب يربط بين المعنى اللغوي والتمثيل الذهني للعالم، مركّزًا على فكرة "الصورة الذهنية" ودورها في فهم اللغة والمعنى`,
       // pdf: 'pdfs/كتب/تصورات عن المعنى والدلالة 2025.pdf' // أضف إذا لديك PDF
     }
   ];
@@ -192,13 +197,17 @@ export default function Portfolio() {
 
             <div className="flex-1">
               <h3 className="text-2xl font-bold text-gray-800 mb-2">{book.title}</h3>
-              <p className="text-gray-700 mb-2"><span className="font-semibold">الناشر:</span> {book.publisher || book.source}</p>
+              <p className="text-gray-700 mb-2"><span className="font-semibold">الناشر:</span> {book.publishers || book.source}</p>
               <p className="text-gray-700 mb-2"><span className="font-semibold">السنة:</span> {book.year} {book.pages && `| صفحات: ${book.pages}`}</p>
-              <p className="text-gray-700 leading-relaxed mb-4">
-                هذا الكتاب صدر عن {book.publisher || book.source} في {book.year}. (أضف وصفاً أقصر هنا إذا أردت)
-              </p>
+              <div className="border-t border-emerald-200 pt-4">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">الوصف</h3>
+                <p className="text-gray-700 leading-relaxed">
+                  {book.description}
+                </p>
+              </div>
 
-              <div className="flex items-center gap-3">
+
+              <div className="flex items-center gap-3 mt-4">
                 {book.pdf && (
                   <a
                     href={book.pdf}
@@ -393,9 +402,11 @@ export default function Portfolio() {
               <div>
                 <h3 className="font-bold text-gray-800 mb-2">العنوان المهني</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  معهد الدراسات والأبحاث للتعريب<br />
-                  جامعة محمد الخامس<br />
-                  الرباط، المغرب
+                  <a href="https://maps.app.goo.gl/PWcwRz5Xhf9Ank33A" target="_blank" rel="noopener noreferrer">
+                    معهد الدراسات والأبحاث للتعريب<br />
+                    جامعة محمد الخامس<br />
+                    الرباط، المغرب
+                  </a>
                 </p>
               </div>
             </div>
@@ -407,6 +418,11 @@ export default function Portfolio() {
               <div>
                 <h3 className="font-bold text-gray-800 mb-2">البريد الإلكتروني</h3>
                 <p className="text-gray-700">للتواصل الأكاديمي والعلمي</p>
+                  <p className="text-gray-700">
+                  <a href="mailto:hamdagh70@gmail.com" className="hover:underline">
+                    hamdagh70@gmail.com
+                  </a>
+                </p>
               </div>
             </div>
           </div>
@@ -417,11 +433,33 @@ export default function Portfolio() {
               <div>
                 <h3 className="font-bold text-gray-800 mb-2">الروابط الأكاديمية</h3>
                 <p className="text-gray-700">
-                  جامعة محمد الخامس - معهد الدراسات والأبحاث للتعريب
+                  <a href="https://iera.um5.ac.ma/fr/node/918" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                    جامعة محمد الخامس - معهد الدراسات والأبحاث للتعريب
+                  </a>
                 </p>
               </div>
             </div>
           </div>
+
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
+            <div className="flex items-start gap-4">
+              <Facebook className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="font-bold text-gray-800 mb-2">الحساب على فيس بوك</h3>
+                <p className="text-gray-700">
+                  <a 
+                    href="https://web.facebook.com/ham.dagh.2025" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline flex items-center gap-2"
+                  >
+                    Ham Dagh
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -441,7 +479,7 @@ export default function Portfolio() {
               <div className="text-2xl font-bold text-emerald-700">د. حميد دغوج</div>
             </div>
 
-            {/* Desktop menu */}
+            {/* Desktop menu - Convert to anchor links */}
             <div className="hidden md:flex gap-2">
               {[
                   {
@@ -470,18 +508,14 @@ export default function Portfolio() {
                     icon: <Mail className="w-4 h-4" />
                   }
                 ].map(item => (
-                <button
+                <a
                   key={item.id}
-                  onClick={() => { setActiveSection(item.id); }}
-                  className={`px-4 py-2 rounded-lg font-semibold transition-all flex items-center gap-2 ${
-                    activeSection === item.id
-                      ? 'bg-emerald-600 text-white shadow-md'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
+                  href={`#${item.id}`}
+                  className="px-4 py-2 rounded-lg font-semibold transition-all flex items-center gap-2 bg-gray-100 text-gray-700 hover:bg-gray-200"
                 >
                   {item.icon}
                   {item.label}
-                </button>
+                </a>
               ))}
             </div>
 
@@ -545,12 +579,33 @@ export default function Portfolio() {
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        {activeSection === 'home' && renderHome()}
-        {activeSection === 'book' && renderBook()}
-        {activeSection === 'about' && renderAbout()}
-        {activeSection === 'publications' && renderPublications()}
-        {activeSection === 'contact' && renderContact()}
+      <main className="max-w-7xl mx-auto px-4 py-8 space-y-16">
+        {/* Home Section */}
+        <section id="home">
+          {renderHome()}
+        </section>
+
+        {/* About Section */}
+        <section id="about">
+          {renderAbout()}
+        </section>
+
+        
+        {/* Publications Section */}
+        <section id="publications">
+          {renderPublications()}
+        </section>
+
+
+        {/* Book Section */}
+        <section id="book">
+          {renderBook()}
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact">
+          {renderContact()}
+        </section>
       </main>
 
       {/* Lightbox modal */}
@@ -593,6 +648,16 @@ export default function Portfolio() {
         }
         .animate-fade-in {
           animation: fade-in 0.5s ease-out;
+        }
+
+        /* Add smooth scrolling */
+        html {
+          scroll-behavior: smooth;
+        }
+
+        /* Add padding to account for fixed header */
+        section {
+          scroll-margin-top: 5rem;
         }
       `}</style>
     </div>
