@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { BookOpen, User, FileText, Mail, Phone, MapPin, Download, ExternalLink, Menu, X, Facebook } from 'lucide-react';
-import profileImage from '../assets/profile.jpg'; // Assuming the image is saved in assets folder
+
+// Mock images - replace with your actual imports
+// Replace these mock URLs with your actual imports:
+import profileImage from '../assets/profile.jpg';
 import bookCover from '../assets/book_cover_2025.jpg';
 import bookBack from '../assets/book_back_2025.jpg';
 
-
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
-  const [lightboxSrc, setLightboxSrc] = useState(null); // <-- new state for lightbox
-  const [mobileOpen, setMobileOpen] = useState(false); // <-- new state for mobile menu
-  const [pdfSrc, setPdfSrc] = useState(null); // Add a new state for PDF viewer
+  const [lightboxSrc, setLightboxSrc] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [pdfSrc, setPdfSrc] = useState(null);
 
   const publications = [
     {
@@ -19,7 +21,7 @@ export default function Portfolio() {
       publisher: 'دار كنوز المعرفة',
       year: 2024,
       pages: '137-154',
-      pdf: '/pdfs/كتب جماعية/منشورة تدريس البلاغة التصورات والقواعد 2024.pdf', // Example PDF path
+      pdf: '/pdfs/كتب جماعية/منشورة تدريس البلاغة التصورات والقواعد 2024.pdf',
     },
     {
       type: 'book',
@@ -52,7 +54,7 @@ export default function Portfolio() {
       publisher: 'منشورات كلية الآداب بالرباط',
       year: 2021,
       pages: '243-251',
-      pdf :'pdfs/كتب جماعية/مباحث نحوية.pdf'
+      pdf: 'pdfs/كتب جماعية/مباحث نحوية.pdf'
     },
     {
       type: 'book',
@@ -61,7 +63,7 @@ export default function Portfolio() {
       publisher: 'دار أبي رقراق للطباعة والنشر',
       year: 2021,
       pages: '63-84',
-      pdf:'pdfs/كتب جماعية/التعلم والاكتساب مقاربة معرفية.pdf'
+      pdf: 'pdfs/كتب جماعية/التعلم والاكتساب مقاربة معرفية.pdf'
     },
     {
       type: 'journal',
@@ -79,7 +81,7 @@ export default function Portfolio() {
       volume: 'مج 3، عدد 1',
       year: 2025,
       pages: '1-15',
-      pdf:'pdfs/محكمة/منشورة 2025  1الاستعارة السمات والدور الدلالي.pdf'
+      pdf: 'pdfs/محكمة/منشورة 2025  1الاستعارة السمات والدور الدلالي.pdf'
     },
     {
       type: 'book',
@@ -87,7 +89,7 @@ export default function Portfolio() {
       source: 'BIBLIO LE GUIDE',
       publisher: 'BIBLIO LE GUIDE',
       year: 2025,
-      pages: '', // املأ إذا أحببت
+      pages: '',
       cover: bookCover,
       back: bookBack,
       featured: true,
@@ -96,7 +98,6 @@ export default function Portfolio() {
 
 كما يناقش كيف يبني الإنسان تصورات ذهنية للأشياء، وكيف تنتقل هذه التصورات عبر اللغة، وكيف تمثل اللغة العالم داخل الذهن البشري.
 الكتاب يربط بين المعنى اللغوي والتمثيل الذهني للعالم، مركّزًا على فكرة "الصورة الذهنية" ودورها في فهم اللغة والمعنى`,
-      // pdf: 'pdfs/كتب/تصورات عن المعنى والدلالة 2025.pdf' // أضف إذا لديك PDF
     }
   ];
 
@@ -126,7 +127,7 @@ export default function Portfolio() {
           <img 
             src={profileImage} 
             alt="صورة الأستاذ"
-            className="w-48 h-48 rounded-full object-cover border-4 border-emerald-500 shadow-lg"
+            className="w-48 h-48 rounded-full object-cover border-4 border-emerald-500 shadow-lg profile-float profile-glow"
           />
           <div>
             <h1 className="text-4xl font-bold text-gray-800 mb-3">الأستاذ حميد دغوج</h1>
@@ -148,7 +149,7 @@ export default function Portfolio() {
         </h2>
         <div className="grid md:grid-cols-3 gap-4">
           {['المعجم والدلالة', 'اللسانيات المعرفية', 'تدريس اللغة العربية'].map((field, idx) => (
-            <div key={idx} className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-5 text-center border-2 border-emerald-100 hover:border-emerald-300 transition-all">
+            <div key={idx} className="field-card bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-5 text-center border-2 border-emerald-100 hover:border-emerald-300 transition-all">
               <p className="text-gray-800 font-semibold">{field}</p>
             </div>
           ))}
@@ -165,7 +166,7 @@ export default function Portfolio() {
   );
 
   const renderBook = () => {
-    const book = publications.find(p => p.featured); // use the featured flag
+    const book = publications.find(p => p.featured);
     if (!book) return null;
     return (
       <div className="space-y-6 animate-fade-in">
@@ -181,7 +182,7 @@ export default function Portfolio() {
                 <img
                   src={book.cover}
                   alt={`${book.title} - غلاف`}
-                  className="w-full max-w-[220px] md:w-56 md:h-80 h-auto object-cover rounded-md shadow-sm cursor-pointer"
+                  className="w-full max-w-[220px] md:w-56 md:h-80 h-auto object-cover rounded-md shadow-sm image-hover"
                   onClick={() => setLightboxSrc(book.cover)}
                 />
               )}
@@ -190,7 +191,7 @@ export default function Portfolio() {
                 <img
                   src={book.back}
                   alt={`${book.title} - غلاف خلفي`}
-                  className="w-full max-w-[220px] md:w-56 md:h-80 h-auto object-cover rounded-md shadow-sm cursor-pointer"
+                  className="w-full max-w-[220px] md:w-56 md:h-80 h-auto object-cover rounded-md shadow-sm image-hover"
                   onClick={() => setLightboxSrc(book.back)}
                 />
               )}
@@ -198,7 +199,7 @@ export default function Portfolio() {
 
             <div className="flex-1">
               <h3 className="text-2xl font-bold text-gray-800 mb-2">{book.title}</h3>
-              <p className="text-gray-700 mb-2"><span className="font-semibold">الناشر:</span> {book.publishers || book.source}</p>
+              <p className="text-gray-700 mb-2"><span className="font-semibold">الناشر:</span> {book.publisher || book.source}</p>
               <p className="text-gray-700 mb-2"><span className="font-semibold">السنة:</span> {book.year} {book.pages && `| صفحات: ${book.pages}`}</p>
               <div className="border-t border-emerald-200 pt-4">
                 <h3 className="text-lg font-bold text-gray-800 mb-2">الوصف</h3>
@@ -207,12 +208,11 @@ export default function Portfolio() {
                 </p>
               </div>
 
-
               <div className="flex items-center gap-3 mt-4">
                 {book.pdf && (
                   <button
                     onClick={() => setPdfSrc(book.pdf)}
-                    className="flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors"
+                    className="flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors btn-animate"
                   >
                     <FileText className="w-4 h-4" />
                     عرض المستند
@@ -283,7 +283,7 @@ export default function Portfolio() {
           <h3 className="text-2xl font-bold text-emerald-700 mb-4">في كتب جماعية</h3>
           <div className="space-y-4">
             {publications.filter(p => p.type === 'book' && !p.featured).map((pub, idx) => (
-              <div key={idx} className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6 border-r-4 border-emerald-500 hover:shadow-md transition-all">
+              <div key={idx} className="pub-card bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6 border-r-4 border-emerald-500 hover:shadow-md transition-all card-hover">
                 <div className="flex justify-between items-start">
                   <div className="flex gap-6">
                     {pub.cover && (
@@ -291,7 +291,7 @@ export default function Portfolio() {
                         <img
                           src={pub.cover}
                           alt={`${pub.title} - غلاف`}
-                          className="w-full max-w-[140px] md:w-28 md:h-40 h-auto object-cover rounded-md shadow-sm cursor-pointer"
+                          className="w-full max-w-[140px] md:w-28 md:h-40 h-auto object-cover rounded-md shadow-sm image-hover"
                           onClick={() => setLightboxSrc(pub.cover)}
                         />
                       </div>
@@ -320,7 +320,7 @@ export default function Portfolio() {
                     {pub.pdf && (
                       <button
                         onClick={() => setPdfSrc(pub.pdf)}
-                        className="flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors"
+                        className="flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors btn-animate"
                       >
                         <FileText className="w-4 h-4" />
                         عرض المستند
@@ -329,7 +329,6 @@ export default function Portfolio() {
                   </div>
                 </div>
               </div>
-              
             ))}
           </div>
         </div>
@@ -338,7 +337,7 @@ export default function Portfolio() {
           <h3 className="text-2xl font-bold text-teal-700 mb-4">في مجلات محكمة</h3>
           <div className="space-y-4">
             {publications.filter(p => p.type === 'journal').map((pub, idx) => (
-              <div key={idx} className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-6 border-r-4 border-teal-500 hover:shadow-md transition-all">
+              <div key={idx} className="pub-card bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-6 border-r-4 border-teal-500 hover:shadow-md transition-all card-hover">
                 <div className="flex justify-between items-start">
                   <div>
                     <h4 className="text-lg font-bold text-gray-800 mb-3">{pub.title}</h4>
@@ -348,17 +347,17 @@ export default function Portfolio() {
                       <p><span className="font-semibold">السنة:</span> {pub.year} | <span className="font-semibold">الصفحات:</span> {pub.pages}</p>
                     </div>
                   </div>
-                  {pub.pdf && (
-                    <a
-                      href={pub.pdf}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors"
-                    >
-                      <Download className="w-4 h-4" />
-                      PDF تحميل
-                    </a>
-                  )}
+                  <div className="flex flex-col items-end gap-3">
+                    {pub.pdf && (
+                      <button
+                        onClick={() => setPdfSrc(pub.pdf)}
+                        className="flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors btn-animate"
+                      >
+                        <FileText className="w-4 h-4" />
+                        عرض المستند
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
@@ -369,7 +368,7 @@ export default function Portfolio() {
           <h3 className="text-2xl font-bold text-cyan-700 mb-4">المشاركات العلمية</h3>
           <div className="space-y-4">
             {conferences.map((conf, idx) => (
-              <div key={idx} className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-6 border-r-4 border-cyan-500 hover:shadow-md transition-all">
+              <div key={idx} className="pub-card bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-6 border-r-4 border-cyan-500 hover:shadow-md transition-all card-hover">
                 <h4 className="text-lg font-bold text-gray-800 mb-3">{conf.title}</h4>
                 <div className="text-gray-700 space-y-1">
                   <p><span className="font-semibold">الفعالية:</span> {conf.event}</p>
@@ -415,7 +414,7 @@ export default function Portfolio() {
               <div>
                 <h3 className="font-bold text-gray-800 mb-2">البريد الإلكتروني</h3>
                 <p className="text-gray-700">للتواصل الأكاديمي والعلمي</p>
-                  <p className="text-gray-700">
+                <p className="text-gray-700">
                   <a href="mailto:hamdagh70@gmail.com" className="hover:underline">
                     hamdagh70@gmail.com
                   </a>
@@ -456,7 +455,6 @@ export default function Portfolio() {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -476,39 +474,18 @@ export default function Portfolio() {
               <div className="text-2xl font-bold text-emerald-700">د. حميد دغوج</div>
             </div>
 
-            {/* Desktop menu - Convert to anchor links */}
             <div className="hidden md:flex gap-2">
               {[
-                  {
-                    id: 'home',
-                    label: 'الرئيسية',
-                    icon: <User className="w-4 h-4" />
-                  },
-                  {
-                    id: 'about',
-                    label: 'نبذة',
-                    icon: <BookOpen className="w-4 h-4" />
-                  },
-                  {
-                    id: 'book',
-                    label: 'الكتب',
-                    icon: <BookOpen className="w-4 h-4" />
-                  },
-                  {
-                    id: 'publications',
-                    label: 'المنشورات',
-                    icon: <FileText className="w-4 h-4" />
-                  },
-                  {
-                    id: 'contact',
-                    label: 'الاتصال',
-                    icon: <Mail className="w-4 h-4" />
-                  }
-                ].map(item => (
+                { id: 'home', label: 'الرئيسية', icon: <User className="w-4 h-4" /> },
+                { id: 'about', label: 'نبذة', icon: <BookOpen className="w-4 h-4" /> },
+                { id: 'book', label: 'الكتب', icon: <BookOpen className="w-4 h-4" /> },
+                { id: 'publications', label: 'المنشورات', icon: <FileText className="w-4 h-4" /> },
+                { id: 'contact', label: 'الاتصال', icon: <Mail className="w-4 h-4" /> }
+              ].map(item => (
                 <a
                   key={item.id}
                   href={`#${item.id}`}
-                  className="px-4 py-2 rounded-lg font-semibold transition-all flex items-center gap-2 bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  className="nav-item px-4 py-2 rounded-lg font-semibold transition-all flex items-center gap-2 bg-gray-100 text-gray-700 hover:bg-gray-200"
                 >
                   {item.icon}
                   {item.label}
@@ -516,7 +493,6 @@ export default function Portfolio() {
               ))}
             </div>
 
-            {/* Mobile hamburger */}
             <div className="md:hidden">
               <button
                 type="button"
@@ -529,36 +505,15 @@ export default function Portfolio() {
             </div>
           </div>
 
-          {/* Mobile dropdown menu */}
           {mobileOpen && (
             <div className="mt-3 md:hidden bg-white border-t pt-3 pb-4">
               <div className="flex flex-col gap-2 px-2">
                 {[
-                  {
-                    id: 'home',
-                    label: 'الرئيسية',
-                    icon: <User className="w-4 h-4" />
-                  },
-                  {
-                    id: 'about',
-                    label: 'نبذة',
-                    icon: <BookOpen className="w-4 h-4" />
-                  },
-                  {
-                    id: 'book',
-                    label: 'الكتب',
-                    icon: <BookOpen className="w-4 h-4" />
-                  },
-                  {
-                    id: 'publications',
-                    label: 'المنشورات',
-                    icon: <FileText className="w-4 h-4" />
-                  },
-                  {
-                    id: 'contact',
-                    label: 'الاتصال',
-                    icon: <Mail className="w-4 h-4" />
-                  }
+                  { id: 'home', label: 'الرئيسية', icon: <User className="w-4 h-4" /> },
+                  { id: 'about', label: 'نبذة', icon: <BookOpen className="w-4 h-4" /> },
+                  { id: 'book', label: 'الكتب', icon: <BookOpen className="w-4 h-4" /> },
+                  { id: 'publications', label: 'المنشورات', icon: <FileText className="w-4 h-4" /> },
+                  { id: 'contact', label: 'الاتصال', icon: <Mail className="w-4 h-4" /> }
                 ].map(item => (
                   <button
                     key={item.id}
@@ -577,43 +532,21 @@ export default function Portfolio() {
       </nav>
 
       <main className="max-w-7xl mx-auto px-4 py-8 space-y-16">
-        {/* Home Section */}
-        <section id="home">
-          {renderHome()}
-        </section>
-
-        {/* About Section */}
-        <section id="about">
-          {renderAbout()}
-        </section>
-
-        
-        {/* Publications Section */}
-        <section id="publications">
-          {renderPublications()}
-        </section>
-
-
-        {/* Book Section */}
-        <section id="book">
-          {renderBook()}
-        </section>
-
-        {/* Contact Section */}
-        <section id="contact">
-          {renderContact()}
-        </section>
+        <section id="home">{renderHome()}</section>
+        <section id="about">{renderAbout()}</section>
+        <section id="publications">{renderPublications()}</section>
+        <section id="book">{renderBook()}</section>
+        <section id="contact">{renderContact()}</section>
       </main>
 
-      {/* Lightbox modal */}
       {lightboxSrc && (
         <div
-          className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 modal-backdrop"
           onClick={() => setLightboxSrc(null)}
           role="dialog"
           aria-modal="true"
         >
-          <div className="max-w-[95%] max-h-[95%]">
+          <div className="max-w-[95%] max-h-[95%] modal-content">
             <img
               src={lightboxSrc}
               alt="عرض مكبر"
@@ -624,15 +557,14 @@ export default function Portfolio() {
         </div>
       )}
 
-      {/* PDF viewer modal - Add this new modal for PDF viewing */}
       {pdfSrc && (
         <div 
-          className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 modal-backdrop"
           onClick={() => setPdfSrc(null)}
           role="dialog"
           aria-modal="true"
         >
-          <div className="w-full max-w-5xl h-[90vh] bg-white rounded-lg overflow-hidden" onClick={e => e.stopPropagation()}>
+          <div className="w-full max-w-5xl h-[90vh] bg-white rounded-lg overflow-hidden modal-content" onClick={e => e.stopPropagation()}>
             <div className="flex justify-between items-center p-4 border-b">
               <h3 className="font-bold text-lg">عرض المستند</h3>
               <button 
@@ -655,7 +587,6 @@ export default function Portfolio() {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-gray-300">© 2025 الأستاذ حميد دغوج - جميع الحقوق محفوظة</p>
           <p className="text-gray-400 text-sm mt-2">معهد الدراسات والأبحاث للتعريب - جامعة محمد الخامس</p>
-      
         </div>
       </footer>
 
@@ -670,18 +601,195 @@ export default function Portfolio() {
             transform: translateY(0);
           }
         }
-        .animate-fade-in {
-          animation: fade-in 0.5s ease-out;
+        
+        @keyframes slide-in-right {
+          from {
+            opacity: 0;
+            transform: translateX(-40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes scale-in {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+        
+        @keyframes glow {
+          0%, 100% {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+          }
         }
 
-        /* Add smooth scrolling */
+        .animate-fade-in {
+          animation: fade-in 0.6s ease-out;
+        }
+        
+        .animate-slide-in {
+          animation: slide-in-right 0.6s ease-out;
+        }
+        
+        .animate-scale-in {
+          animation: scale-in 0.5s ease-out;
+        }
+
+        .card-hover {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .profile-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        .profile-glow {
+          animation: glow 3s ease-in-out infinite;
+        }
+        
+        .btn-animate {
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+        
+        .btn-animate::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+          transition: left 0.5s ease;
+        }
+        
+        .btn-animate:hover::before {
+          left: 100%;
+        }
+        
+        .btn-animate:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-animate:active {
+          transform: translateY(0);
+        }
+        
+        .field-card {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          animation: scale-in 0.5s ease-out backwards;
+        }
+        
+        .field-card:nth-child(1) { animation-delay: 0.1s; }
+        .field-card:nth-child(2) { animation-delay: 0.2s; }
+        .field-card:nth-child(3) { animation-delay: 0.3s; }
+        
+        .field-card:hover {
+          transform: translateY(-8px) rotate(-1deg);
+          box-shadow: 0 12px 24px rgba(16, 185, 129, 0.2);
+        }
+        
+        .pub-card {
+          animation: slide-in-right 0.5s ease-out backwards;
+        }
+        
+        .pub-card:nth-child(1) { animation-delay: 0.1s; }
+        .pub-card:nth-child(2) { animation-delay: 0.2s; }
+        .pub-card:nth-child(3) { animation-delay: 0.3s; }
+        .pub-card:nth-child(4) { animation-delay: 0.4s; }
+        .pub-card:nth-child(5) { animation-delay: 0.5s; }
+        
+        .image-hover {
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: pointer;
+        }
+        
+        .image-hover:hover {
+          transform: scale(1.05) rotate(2deg);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-backdrop {
+          animation: fade-in 0.3s ease-out;
+        }
+        
+        .modal-content {
+          animation: scale-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .link-animate {
+          position: relative;
+          transition: color 0.3s ease;
+        }
+        
+        .link-animate::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: currentColor;
+          transition: width 0.3s ease;
+        }
+        
+        .link-animate:hover::after {
+          width: 100%;
+        }
+
         html {
           scroll-behavior: smooth;
         }
 
-        /* Add padding to account for fixed header */
         section {
           scroll-margin-top: 5rem;
+        }
+        
+        .nav-item {
+          position: relative;
+          transition: all 0.3s ease;
+        }
+        
+        .nav-item::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          background: currentColor;
+          transition: all 0.3s ease;
+          transform: translateX(-50%);
+        }
+        
+        .nav-item:hover::after {
+          width: 80%;
         }
       `}</style>
     </div>
